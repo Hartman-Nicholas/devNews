@@ -33,6 +33,8 @@ public class ArticleCommentLikeController {
         this.articleCommentLikeRepository = articleCommentLikeRepository;
     }
 
+    // Return all likes on the given comment
+
     @GetMapping("/{commentId}/likes")
     public ResponseEntity<Set<ArticleCommentLike>> getArticleCommentLikes(@PathVariable Long commentId) {
         ArticleComment articleComment = articleCommentRepository.findById(commentId)
@@ -40,6 +42,8 @@ public class ArticleCommentLikeController {
         Set<ArticleCommentLike> articleCommentLikes = articleComment.getArticleCommentLikes();
         return ResponseEntity.ok(articleCommentLikes);
     }
+
+    // Create a like on the given comment
 
     @PostMapping("/{commentId}/likes")
     public ResponseEntity<ArticleCommentLike> createLikeComment(@PathVariable Long commentId,
@@ -51,6 +55,8 @@ public class ArticleCommentLikeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(like);
     }
 
+    // Update the given like
+
     @PutMapping("/likes/{id}")
     public ResponseEntity<ArticleCommentLike> updateCommentLike(@PathVariable Long id,
             @RequestBody ArticleCommentLike updatedCommentLike) {
@@ -61,6 +67,8 @@ public class ArticleCommentLikeController {
         articleCommentLikeRepository.save(fetchedCommentLike);
         return ResponseEntity.ok(fetchedCommentLike);
     }
+
+    // Delete the given like
 
     @DeleteMapping("/likes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

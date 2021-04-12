@@ -33,6 +33,8 @@ public class ArticleCommentDislikeController {
         this.articleCommentDislikeRepository = articleCommentDislikeRepository;
     }
 
+    // Return all dislikes on a given comment
+
     @GetMapping("/{commentId}/dislikes")
     public ResponseEntity<Set<ArticleCommentDislike>> getArticleCommentDislikes(@PathVariable Long commentId) {
         ArticleComment articleComment = articleCommentRepository.findById(commentId)
@@ -40,6 +42,8 @@ public class ArticleCommentDislikeController {
         Set<ArticleCommentDislike> articleCommentDislikes = articleComment.getArticleCommentDislikes();
         return ResponseEntity.ok(articleCommentDislikes);
     }
+
+    // Create a dislike on a give comment
 
     @PostMapping("/{commentId}/dislikes")
     public ResponseEntity<ArticleCommentDislike> createDislikeComment(@PathVariable Long commentId,
@@ -51,6 +55,8 @@ public class ArticleCommentDislikeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(disLike);
     }
 
+    // Update the given dislike
+
     @PutMapping("/dislikes/{id}")
     public ResponseEntity<ArticleCommentDislike> updateCommentDislike(@PathVariable Long id,
             @RequestBody ArticleCommentDislike updatedCommentDislike) {
@@ -61,6 +67,8 @@ public class ArticleCommentDislikeController {
         articleCommentDislikeRepository.save(fetchedCommentDislike);
         return ResponseEntity.ok(fetchedCommentDislike);
     }
+
+    // Delete the given dislike
 
     @DeleteMapping("/dislikes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

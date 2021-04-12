@@ -32,12 +32,16 @@ public class ArticleCommentController {
         this.articleCommentRepository = articleCommentRepository;
     };
 
+    // Return all comments on article given by articleId
+
     @GetMapping("/articles/{articleId}/comments")
     public ResponseEntity<List<ArticleComment>> getArticleComments(@PathVariable Long articleId) {
         Article article = articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
         List<ArticleComment> comments = article.getArticleComments();
         return ResponseEntity.ok(comments);
     }
+
+    // Retrun all comments made by author given by authorName
 
     @GetMapping("/comments")
     public ResponseEntity<List<ArticleComment>> getArticleCommentsByAuthor(
@@ -46,6 +50,8 @@ public class ArticleCommentController {
         return ResponseEntity.ok(articleComment);
 
     }
+
+    // Create a new comment on article given by articleId
 
     @PostMapping("/articles/{articleId}/comments")
     public ResponseEntity<ArticleComment> createArticleComment(@PathVariable Long articleId,
@@ -56,6 +62,8 @@ public class ArticleCommentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(articleComment);
 
     }
+
+    // Update the given comment
 
     @PutMapping("/comments/{id}")
     public ResponseEntity<ArticleComment> updateArticleComment(@PathVariable Long id,
@@ -69,6 +77,8 @@ public class ArticleCommentController {
         return ResponseEntity.ok(updatedArticleComment);
 
     }
+
+    // Delete the given comment
 
     @DeleteMapping("/comments/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

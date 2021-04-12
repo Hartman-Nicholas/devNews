@@ -33,12 +33,16 @@ public class ArticleDislikecontroller {
         this.articleDislikeRepository = articleDislikeRepository;
     }
 
+    // Return dislikes by given article
+
     @GetMapping("/{articleId}/dislikes")
     public ResponseEntity<List<ArticleDislike>> getArticleDislikes(@PathVariable Long articleId) {
         Article article = articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
         List<ArticleDislike> articleDislikes = article.getArticleDislikes();
         return ResponseEntity.ok(articleDislikes);
     }
+
+    // Cretae dislikes on given article
 
     @PostMapping("/{articleId}/dislikes")
     public ResponseEntity<ArticleDislike> createLikeArticle(@PathVariable Long articleId,
@@ -48,6 +52,8 @@ public class ArticleDislikecontroller {
         articleDislikeRepository.save(dislike);
         return ResponseEntity.status(HttpStatus.CREATED).body(dislike);
     }
+
+    // Update given dislike.
 
     @PutMapping("/dislikes/{id}")
     public ResponseEntity<ArticleDislike> updateArticleLike(@PathVariable Long id,
@@ -59,6 +65,8 @@ public class ArticleDislikecontroller {
         articleDislikeRepository.save(fetchedArticleDislike);
         return ResponseEntity.ok(fetchedArticleDislike);
     }
+
+    // Delete given dislike
 
     @DeleteMapping("/dislikes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

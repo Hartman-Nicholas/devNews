@@ -54,8 +54,6 @@ public class ArticleTopicController {
         return ResponseEntity.ok(topic.getArticle());
     }
 
-    // Create a new topic.
-
     // Associate the topic with the article given by articleId. If topic does not
     // already exist, it is created.
 

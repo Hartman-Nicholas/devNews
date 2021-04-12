@@ -33,12 +33,16 @@ public class ArticleLikeController {
         this.articleLikeRepository = articleLikeRepository;
     }
 
+    // Return likes on given article
+
     @GetMapping("/{articleId}/likes")
     public ResponseEntity<List<ArticleLike>> getArticleLikes(@PathVariable Long articleId) {
         Article article = articleRepository.findById(articleId).orElseThrow(ResourceNotFoundException::new);
         List<ArticleLike> articleLikes = article.getArticleLikes();
         return ResponseEntity.ok(articleLikes);
     }
+
+    // Create like on given article
 
     @PostMapping("/{articleId}/likes")
     public ResponseEntity<ArticleLike> createLikeArticle(@PathVariable Long articleId, @RequestBody ArticleLike like) {
@@ -47,6 +51,8 @@ public class ArticleLikeController {
         articleLikeRepository.save(like);
         return ResponseEntity.status(HttpStatus.CREATED).body(like);
     }
+
+    // Update given like
 
     @PutMapping("/likes/{id}")
     public ResponseEntity<ArticleLike> updateArticleLike(@PathVariable Long id,
@@ -57,6 +63,8 @@ public class ArticleLikeController {
         articleLikeRepository.save(fetchedArticleLike);
         return ResponseEntity.ok(fetchedArticleLike);
     }
+
+    // Delete given like.
 
     @DeleteMapping("/likes/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

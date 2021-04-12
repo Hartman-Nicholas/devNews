@@ -2,7 +2,6 @@ package hartn.devnews.dev_news.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,10 +24,11 @@ public class ArticleController {
 
     ArticleRepository articleRepository;
 
-    @Autowired
     public ArticleController(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
     }
+
+    // Return All Articles
 
     @GetMapping
     public List<Article> listAllArticles() {
@@ -36,11 +36,23 @@ public class ArticleController {
         return article;
     }
 
+    // Return a specific article based on the provided Id
+
     @GetMapping("/{id}")
     public ResponseEntity<Article> findOne(@PathVariable Long id) {
         Article article = articleRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         return ResponseEntity.ok(article);
     }
+
+    // Create a new Article
+
+    @PostMapping
+    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
+        articleRepository.save(article);
+        return ResponseEntity.status(HttpStatus.CREATED).body(article);
+    }
+
+    // Update the given article
 
     @PutMapping("/{id}")
     public ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article updatedArticle) {
@@ -51,11 +63,7 @@ public class ArticleController {
         return ResponseEntity.ok(updatedArticle);
     }
 
-    @PostMapping
-    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
-        articleRepository.save(article);
-        return ResponseEntity.status(HttpStatus.CREATED).body(article);
-    }
+    // Delete the given article
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
