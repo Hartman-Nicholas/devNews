@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import hartn.devnews.dev_news.classes.ArticleComment;
+import hartn.devnews.dev_news.model.ArticleComment;
 
 public interface ArticleCommentRepository extends JpaRepository<ArticleComment, Long> {
 

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import hartn.devnews.dev_news.classes.Article;
-import hartn.devnews.dev_news.classes.ArticleTopic;
-import hartn.devnews.dev_news.exception.ResourceNotFoundException;
+import hartn.devnews.dev_news.controller.exception.ResourceNotFoundException;
+import hartn.devnews.dev_news.model.Article;
+import hartn.devnews.dev_news.model.ArticleTopic;
 import hartn.devnews.dev_news.repository.ArticleRepository;
 import hartn.devnews.dev_news.repository.ArticleTopicRepository;
 

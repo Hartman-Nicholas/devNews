@@ -1,4 +1,4 @@
-package hartn.devnews.dev_news.classes;
+package hartn.devnews.dev_news.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,29 +13,27 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-public class ArticleDislike {
+public class ArticleLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JoinColumn(nullable = false)
-    private String dislikeBy;
+    private String likeBy;
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(nullable = false)
     @NotNull
-    private Article articleDislike;
+    private Article articleLike;
 
-    public ArticleDislike() {
+    public ArticleLike() {
     }
 
-    public ArticleDislike(String dislikeBy, Article articleDislike) {
-
-        this.dislikeBy = dislikeBy;
-        this.articleDislike = articleDislike;
+    public ArticleLike(String likeBy) {
+        this.likeBy = likeBy;
     }
 
     public Long getId() {
@@ -46,20 +44,20 @@ public class ArticleDislike {
         this.id = id;
     }
 
-    public String getDislikeBy() {
-        return this.dislikeBy;
+    public String getLikeBy() {
+        return this.likeBy;
     }
 
-    public void setDislikeBy(String dislikeBy) {
-        this.dislikeBy = dislikeBy;
+    public void setLikeBy(String likeBy) {
+        this.likeBy = likeBy;
     }
 
-    public Article getArticleDislike() {
-        return this.articleDislike;
+    public void setArticleLike(Article articleLike) {
+        this.articleLike = articleLike;
     }
 
-    public void setArticleDislike(Article articleDislike) {
-        this.articleDislike = articleDislike;
+    public Article getArticleLike() {
+        return this.articleLike;
     }
 
 }

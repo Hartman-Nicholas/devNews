@@ -1,4 +1,4 @@
-package hartn.devnews.dev_news.classes;
+package hartn.devnews.dev_news.model;
 
 import java.util.List;
 

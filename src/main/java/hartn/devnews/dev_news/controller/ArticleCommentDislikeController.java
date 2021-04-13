@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import hartn.devnews.dev_news.classes.ArticleComment;
-import hartn.devnews.dev_news.classes.ArticleCommentDislike;
-import hartn.devnews.dev_news.exception.ResourceNotFoundException;
+import hartn.devnews.dev_news.controller.exception.ResourceNotFoundException;
+import hartn.devnews.dev_news.model.ArticleComment;
+import hartn.devnews.dev_news.model.ArticleCommentDislike;
 import hartn.devnews.dev_news.repository.ArticleCommentDislikeRepository;
 import hartn.devnews.dev_news.repository.ArticleCommentRepository;
 

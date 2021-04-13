@@ -1,4 +1,4 @@
-package hartn.devnews.dev_news.exception;
+package hartn.devnews.dev_news.controller.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
